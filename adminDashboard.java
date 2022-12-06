@@ -13,7 +13,7 @@ import java.awt.*;
 
 public class adminDashboard {
     JFrame frame;
-    JPanel dashboardJPanel,regFormJPanel,chatJPanel;
+    JPanel dashboardJPanel;
 
     //Dashboard Panel Items
     JButton signoutButton,addUserButton,viewQnAButton;
@@ -28,6 +28,15 @@ public class adminDashboard {
         addUserButton=new JButton("Add User");
         viewQnAButton=new JButton("View Q/A Chat");
 
+
+        addUserButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e)
+            {
+                regForm regf=new regForm();
+                frame.setVisible(false);
+                regf.setVisible(true);
+            } 
+        });
 
         viewQnAButton.addActionListener(new ActionListener()
         {
