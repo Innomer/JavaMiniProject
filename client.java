@@ -1,3 +1,5 @@
+package MiniProject.JavaMiniProject;
+
 import java.net.Socket;
 import java.awt.Font;
 import java.io.*;

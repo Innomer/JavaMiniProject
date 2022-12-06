@@ -67,11 +67,14 @@ public class loginForm {
                     sta = connection.createStatement();
                     rs = sta.executeQuery(query);
                     while (rs.next()) {
-                        // System.out.println(rs.getString("username")+username+rs.getString("password"));
+                        //System.out.println(rs.getString("username")+username+rs.getString("password"));
                         if (rs.getString("username").equalsIgnoreCase(username)
                                 && rs.getString("password").equals(password)) {
                             errorLabel.setText("");
                             System.out.println("Success");
+                            frame.setVisible(false);
+                            adminDashboard admin=new adminDashboard();
+                            admin.begin();
 
                         } else {
                             errorLabel.setText("Wrong Credentials. Please Check your Username and Password Again");
@@ -165,6 +168,10 @@ public class loginForm {
     }
 
     public static void main(String args[]) {
+        begin();
+    }
+    public static void begin()
+    {
         loginForm lf = new loginForm();
         lf.frame.setTitle("Sasta Teams");
         lf.frame.setSize(1280, 720);
