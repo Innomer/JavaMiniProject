@@ -1,3 +1,5 @@
+package MiniProject.JavaMiniProject;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -11,17 +13,17 @@ import javax.swing.JPanel;
 
 public class MonthPanel extends JPanel {
 
-    private static final long   serialVersionUID    = 1L;
+    private static final long serialVersionUID = 1L;
 
-    protected int               month;
-    protected int               year;
+    protected int month;
+    protected int year;
 
-    protected String[]          monthNames          = { "January", "February",
+    protected String[] monthNames = { "January", "February",
             "March", "April", "May", "June", "July", "August", "September",
-            "October", "November", "December"       };
+            "October", "November", "December" };
 
-    protected String[]          dayNames            = { "S", "M", "T", "W",
-            "T", "F", "S"                           };
+    protected String[] dayNames = { "S", "M", "T", "W",
+            "T", "F", "S" };
 
     public MonthPanel(int month, int year) {
         this.month = month;
