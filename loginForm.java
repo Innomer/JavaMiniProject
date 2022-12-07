@@ -13,26 +13,28 @@ import java.awt.*;
 
 public class loginForm {
 
+    static GraphicsDevice device = GraphicsEnvironment
+            .getLocalGraphicsEnvironment().getScreenDevices()[0];
     JFrame frame;
     JPanel panel;
     JLabel userJLabel, passJLabel, topicsJLabel, errorLabel;
     JTextField userField, passField;
     JButton submitButton;
 
-    //Constructor
+    // Constructor
     loginForm() {
-        //Initializing Items
+        // Initializing Items
         frame = new JFrame();
         panel = new JPanel();
         userJLabel = new JLabel("Username");
         passJLabel = new JLabel("Password");
-        userField = new JTextField("Enter username", 20);
-        passField = new JPasswordField("Enter password", 20);
+        userField = new JTextField("mann@gmail.com", 20);
+        passField = new JPasswordField("123", 20);
         submitButton = new JButton("Submit");
         topicsJLabel = new JLabel("Login");
         errorLabel = new JLabel();
 
-        //Setting Fonts
+        // Setting Fonts
         topicsJLabel.setFont(new Font("Arial", Font.PLAIN, 30));
         userJLabel.setFont(new Font("Arial", Font.PLAIN, 15));
         passJLabel.setFont(new Font("Arial", Font.PLAIN, 15));
@@ -43,7 +45,7 @@ public class loginForm {
         // passField.setBounds(350, 110, 300, 20);
         // submitButton.setBounds(400, 150, 100, 30);
 
-        //Parenting Labels to Text Fields
+        // Parenting Labels to Text Fields
         userJLabel.setLabelFor(userField);
         passJLabel.setLabelFor(passField);
 
@@ -52,7 +54,7 @@ public class loginForm {
         // passField.setHorizontalAlignment(SwingConstants.CENTER);
         // userField.setHorizontalAlignment(SwingConstants.CENTER);
 
-        //Login Functionality
+        // Login Functionality
         submitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String username = userField.getText();
@@ -67,14 +69,16 @@ public class loginForm {
                     sta = connection.createStatement();
                     rs = sta.executeQuery(query);
                     while (rs.next()) {
-                        //System.out.println(rs.getString("username")+username+rs.getString("password"));
+                        // System.out.println(rs.getString("username")+username+rs.getString("password"));
                         if (rs.getString("username").equalsIgnoreCase(username)
                                 && rs.getString("password").equals(password)) {
                             errorLabel.setText("");
                             System.out.println("Success");
                             frame.setVisible(false);
-                            adminDashboard admin=new adminDashboard();
-                            admin.begin();
+                            if (rs.getString("level").equals("2")) {
+                                adminDashboard admin = new adminDashboard();
+                                admin.begin();
+                            }
 
                         } else {
                             errorLabel.setText("Wrong Credentials. Please Check your Username and Password Again");
@@ -105,7 +109,7 @@ public class loginForm {
         });
         // panel.setLayout(new BorderLayout());
 
-        //Arranging Items on Panel
+        // Arranging Items on Panel
         panel.setLayout(new GridBagLayout());
         Border blackline = BorderFactory.createLineBorder(Color.red);
         panel.setBorder(blackline);
@@ -134,10 +138,10 @@ public class loginForm {
         c.gridwidth = 2;
         panel.add(submitButton, c);
 
-        c.gridx=0;
-        c.gridy=4;
+        c.gridx = 0;
+        c.gridy = 4;
         c.gridwidth = 2;
-        panel.add(errorLabel,c);
+        panel.add(errorLabel, c);
 
         // panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         /*
@@ -154,7 +158,7 @@ public class loginForm {
         // panel.add(passField);
         // panel.add(submitButton);
         // panel.add(errorLabel);
-        frame.add(panel,BorderLayout.CENTER);
+        frame.add(panel, BorderLayout.CENTER);
         // frame.add(panel);
         // frame.add(topicsJLabel);
         // frame.add(userJLabel);
@@ -170,13 +174,16 @@ public class loginForm {
     public static void main(String args[]) {
         begin();
     }
-    public static void begin()
-    {
+
+    public static void begin() {
         loginForm lf = new loginForm();
         lf.frame.setTitle("Sasta Teams");
         lf.frame.setSize(1280, 720);
         lf.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // lf.frame.setUndecorated(true);
+        device.setFullScreenWindow(lf.frame);
         // lf.frame.setLayout(null);
         lf.frame.setVisible(true);
+
     }
 }

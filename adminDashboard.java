@@ -19,6 +19,9 @@ public class adminDashboard {
     JButton signoutButton,addUserButton,viewQnAButton;
     JLabel topicJLabel;
 
+    static GraphicsDevice device = GraphicsEnvironment
+        .getLocalGraphicsEnvironment().getScreenDevices()[0];
+
     adminDashboard()
     {
         frame=new JFrame();
@@ -34,6 +37,7 @@ public class adminDashboard {
             {
                 regForm regf=new regForm();
                 frame.setVisible(false);
+                device.setFullScreenWindow(regf);
                 regf.setVisible(true);
             } 
         });
@@ -86,6 +90,8 @@ public class adminDashboard {
         adminDashboard ad = new adminDashboard();
         ad.frame.setTitle("Sasta Teams");
         ad.frame.setSize(1280, 720);
+        // ad.frame.setUndecorated(true);
+        device.setFullScreenWindow(ad.frame);
         ad.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // lf.frame.setLayout(null);
         ad.frame.setVisible(true);
