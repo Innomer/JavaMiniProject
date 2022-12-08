@@ -13,14 +13,14 @@ import java.sql.Statement;
 import java.awt.*;
 
 public class adminDashboard {
-    static JFrame frame;
+    JFrame frame;
     JPanel dashboardJPanel;
 
     // Dashboard Panel Items
     JButton signoutButton, addUserButton, viewQnAButton;
     JLabel topicJLabel;
 
-    static JScrollPane serverPanel;
+    JScrollPane serverPanel;
     boolean serverShowing = false;
 
     static GraphicsDevice device = GraphicsEnvironment
@@ -100,11 +100,13 @@ public class adminDashboard {
             public void actionPerformed(ActionEvent e) {
                 c.gridy = 3;
                 c.gridwidth = 3;
-                c.anchor = GridBagConstraints.PAGE_END;
+                c.anchor = GridBagConstraints.CENTER;
                 c.fill = GridBagConstraints.BOTH;
                 c.weightx = 1.0;
                 c.weighty = 1.0;
-                dashboardJPanel.add(serverPanel, c);
+                // serverPanel = new JScrollPane();
+                // serverPanel.add(Server.messagearea);
+                dashboardJPanel.add(Server.messagearea, c);
                 frame.invalidate();
                 frame.revalidate();
                 frame.repaint();
@@ -132,14 +134,9 @@ class RunServer implements Runnable {
         try {
             if (Server.canRun == false) {
                 serv = new Server();
-                adminDashboard.serverPanel = new JScrollPane();
-                adminDashboard.serverPanel.add(Server.messagearea);
                 System.out.println(Server.messagearea);
                 Server.canRun = true;
             }
-            adminDashboard.frame.invalidate();
-            adminDashboard.frame.revalidate();
-            adminDashboard.frame.repaint();
             serv.runningServer();
         } catch (IOException e) {
             e.printStackTrace();

@@ -145,8 +145,6 @@ class RunServerST implements Runnable {
         try {
             if (Server.canRun == false) {
                 serv = new Server();
-                adminDashboard.serverPanel = new JScrollPane();
-                adminDashboard.serverPanel.add(Server.messagearea);
                 System.out.println(Server.messagearea);
                 Server.canRun = true;
                 serv.runningServer();
