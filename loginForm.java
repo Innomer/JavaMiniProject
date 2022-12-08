@@ -5,6 +5,7 @@ import javax.swing.border.*;
 import java.util.*;
 import java.lang.*;
 import java.awt.event.*;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -22,7 +23,9 @@ public class loginForm {
     JButton submitButton;
 
     // Constructor
-    loginForm() {
+    loginForm() throws IOException {
+
+
         // Initializing Items
         frame = new JFrame();
         panel = new JPanel();
@@ -176,11 +179,11 @@ public class loginForm {
         // frame.add(panel);
     }
 
-    public static void main(String args[]) {
+    public static void main(String args[]) throws IOException {
         begin();
     }
 
-    public static void begin() {
+    public static void begin() throws IOException {
         loginForm lf = new loginForm();
         lf.frame.setTitle("Sasta Teams");
         lf.frame.setSize(1280, 720);
@@ -189,6 +192,6 @@ public class loginForm {
         device.setFullScreenWindow(lf.frame);
         // lf.frame.setLayout(null);
         lf.frame.setVisible(true);
-
+        Server serv=new Server();
     }
 }

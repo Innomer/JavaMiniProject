@@ -5,6 +5,7 @@ import javax.swing.border.*;
 import java.util.*;
 import java.lang.*;
 import java.awt.event.*;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -119,8 +120,15 @@ public class regForm extends JFrame {
         backButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                adminDashboard ad = new adminDashboard();
-                ad.begin();
+                adminDashboard ad;
+                try {
+                    ad = new adminDashboard();
+                    ad.begin();
+                } catch (IOException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+                
             }
         });
 

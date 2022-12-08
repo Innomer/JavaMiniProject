@@ -5,6 +5,7 @@ import javax.swing.border.*;
 import java.util.*;
 import java.lang.*;
 import java.awt.event.*;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -22,7 +23,7 @@ public class adminDashboard {
     static GraphicsDevice device = GraphicsEnvironment
         .getLocalGraphicsEnvironment().getScreenDevices()[0];
 
-    adminDashboard()
+    adminDashboard() throws IOException
     {
         frame=new JFrame();
         dashboardJPanel=new JPanel();
@@ -51,17 +52,23 @@ public class adminDashboard {
         {
             public void actionPerformed(ActionEvent e)
             {
-                //Server serv=new Server();
-                client cli=new client();
+                
             }
         });
         
         signoutButton.addActionListener(new ActionListener() {
            public void actionPerformed(ActionEvent e)
            {
-                loginForm lf=new loginForm();
-                frame.setVisible(false);
-                lf.begin();
+                loginForm lf;
+                try {
+                    lf = new loginForm();
+                    frame.setVisible(false);
+                    lf.begin();
+                } catch (IOException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+
            } 
         });
 
@@ -101,7 +108,7 @@ public class adminDashboard {
         frame.add(dashboardJPanel);
 
     }
-    public static void begin(){
+    public static void begin() throws IOException{
         adminDashboard ad = new adminDashboard();
         ad.frame.setTitle("Sasta Teams");
         ad.frame.setSize(1280, 720);

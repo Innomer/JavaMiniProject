@@ -1,4 +1,5 @@
-package project;
+package MiniProject.JavaMiniProject;
+
 import java.io.*;
 import java.net.*;
 import java.util.Scanner;
@@ -92,7 +93,7 @@ public class Server extends JFrame
         this.setTitle("Server[end]");
         this.setSize(600,600);
         this.setLocationRelativeTo(null);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         //coding component
         heading.setFont(font);
