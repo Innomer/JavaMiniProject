@@ -41,6 +41,9 @@ public class stuTeach {
         chatJButton.setFont(new Font("Arial", Font.PLAIN, 20));
         signoutButton.setFont(new Font("Arial", Font.PLAIN, 20));
 
+        leftJPanel.setBackground(Color.decode("#1177bb"));
+        rigthJPanel.setBackground(Color.lightGray);
+
         topicJLabel.setHorizontalAlignment(SwingConstants.CENTER);
         grpJButton.setHorizontalAlignment(SwingConstants.CENTER);
         chatJButton.setHorizontalAlignment(SwingConstants.CENTER);
@@ -63,7 +66,7 @@ public class stuTeach {
         });
 
         leftJPanel.setLayout(new GridBagLayout());
-        Border blackline = BorderFactory.createLineBorder(Color.red);
+        Border blackline = BorderFactory.createLineBorder(Color.black);
         leftJPanel.setBorder(blackline);
         GridBagConstraints c = new GridBagConstraints();
         c.insets = new Insets(5, 5, 5, 5);
@@ -81,7 +84,7 @@ public class stuTeach {
         frame.add(leftJPanel, BorderLayout.LINE_START);
 
         rigthJPanel.setLayout(new GridBagLayout());
-        Border blueline = BorderFactory.createLineBorder(Color.blue);
+        Border blueline = BorderFactory.createLineBorder(Color.black);
         rigthJPanel.setBorder(blueline);
         GridBagConstraints c2 = new GridBagConstraints();
         c2.insets = new Insets(5, 5, 5, 5);
@@ -112,8 +115,9 @@ public class stuTeach {
                     rigthJPanel.add(new JScrollPane(cl.messagearea),c2);
                     c2.gridy=2;
                     c2.fill=GridBagConstraints.HORIZONTAL;
-                    c2.anchor=GridBagConstraints.PAGE_END;
+                    c2.anchor=GridBagConstraints.LAST_LINE_START;
                     rigthJPanel.add(cl.messageinput,c2);
+                    
                     
                     frame.invalidate();
                     frame.validate();

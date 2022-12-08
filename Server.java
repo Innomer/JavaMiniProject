@@ -6,6 +6,8 @@ import java.util.Scanner;
 import java.util.*;
 import java.awt.Font;
 import javax.swing.JFrame;
+import javax.swing.border.Border;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -109,6 +111,8 @@ public class Server {
         // heading.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
         messagearea.setEditable(false);
+        Border blackline = BorderFactory.createLineBorder(Color.black);
+        messagearea.setBorder(blackline);
 
         // setting frame's layout
         // this.setLayout(new BorderLayout());

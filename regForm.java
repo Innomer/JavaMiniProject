@@ -59,7 +59,15 @@ public class regForm extends JFrame {
         lJLabel.setLabelFor(lTextField);
         lvlJLabel.setLabelFor(lvlField);
         errorLabel.setForeground(Color.red);
+        topicsJLabel.setForeground(Color.white);
+        userJLabel.setForeground(Color.white);
+        passJLabel.setForeground(Color.white);
+        lvlJLabel.setForeground(Color.white);
+        fJLabel.setForeground(Color.white);
+        lJLabel.setForeground(Color.white);
         errorLabel.setFont(new Font("Arial", Font.BOLD, 20));
+
+        panel.setBackground(Color.gray);
 
         submitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -132,8 +140,9 @@ public class regForm extends JFrame {
         });
 
         panel.setLayout(new GridBagLayout());
-        Border blackline = BorderFactory.createLineBorder(Color.red);
+        Border blackline = BorderFactory.createLineBorder(Color.black);
         panel.setBorder(blackline);
+        
         GridBagConstraints c = new GridBagConstraints();
         c.insets = new Insets(10, 0, 0, 0);
         c.gridx = 0;
@@ -206,22 +215,40 @@ public class regForm extends JFrame {
         JLabel allUser = new JLabel("All Users");
         allUser.setFont(new Font("Arial", Font.PLAIN, 30));
 
+        allUserPanel.setBackground(Color.darkGray);
+        allUser.setBackground(Color.lightGray);
+        allUser.setOpaque(true);
 
         JLabel f = new JLabel("First Name");
         JLabel l = new JLabel("Last Name");
         JLabel u = new JLabel("Username");
         JLabel s = new JLabel("Designation");
+        JLabel x = new JLabel("Index");
         
 
         f.setFont(new Font("Arial", Font.PLAIN, 15));
         l.setFont(new Font("Arial", Font.PLAIN, 15));
         u.setFont(new Font("Arial", Font.PLAIN, 15));
         s.setFont(new Font("Arial", Font.PLAIN, 15));
+        x.setFont(new Font("Arial", Font.PLAIN, 15));
 
+        f.setBackground(Color.lightGray);
+        f.setOpaque(true);
+        l.setBackground(Color.lightGray);
+        l.setOpaque(true);
+        u.setBackground(Color.lightGray);
+        u.setOpaque(true);
+        s.setBackground(Color.lightGray);
+        s.setOpaque(true);
+        x.setBackground(Color.lightGray);
+        x.setOpaque(true);
+        
+        allUser.setHorizontalAlignment(SwingConstants.CENTER);
         f.setHorizontalAlignment(SwingConstants.CENTER);
         l.setHorizontalAlignment(SwingConstants.CENTER);
         u.setHorizontalAlignment(SwingConstants.CENTER);
         s.setHorizontalAlignment(SwingConstants.CENTER);
+        x.setHorizontalAlignment(SwingConstants.CENTER);
 
         Vector<JLabel> temps = new Vector<JLabel>();
         Vector<String> fnames = new Vector<String>();
@@ -269,23 +296,28 @@ public class regForm extends JFrame {
         }
 
         allUserPanel.setLayout(new GridBagLayout());
+        Border blackline=BorderFactory.createLineBorder(Color.black);
+        allUserPanel.setBorder(blackline);
         GridBagConstraints c2 = new GridBagConstraints();
         c2.insets = new Insets(2, 2, 2, 2);
         c2.gridx = 0;
         c2.gridy = 0;
-        c2.gridwidth = 4;
+        c2.gridwidth = 5;
         c2.weightx = 0.5;
         c2.weighty=1.0;
-        c2.anchor = GridBagConstraints.PAGE_START;
-
+        c2.anchor = GridBagConstraints.CENTER;
+        c2.fill=GridBagConstraints.HORIZONTAL;
         allUserPanel.add(allUser, c2);
+
 
         c2.fill = GridBagConstraints.BOTH;
         c2.gridwidth = 1;
-        c2.gridy = 1;
         c2.weightx = 0.5;
-        c2.gridx = 1;
         c2.anchor = GridBagConstraints.CENTER;
+        c2.gridy=1;
+        allUserPanel.add(x,c2);
+
+        c2.gridx = 1;
         allUserPanel.add(f, c2);
 
         c2.gridx = 2;
@@ -303,7 +335,9 @@ public class regForm extends JFrame {
                 JLabel temp = new JLabel();
                 temp.setFont(new Font("Arial", Font.PLAIN, 15));
                 temp.setHorizontalAlignment(SwingConstants.CENTER);
-                temp.setBackground(Color.black);
+                temp.setForeground(Color.black);
+                temp.setBackground(Color.lightGray);
+                temp.setOpaque(true);
                 if (j == 0)
                     temp.setText(fnames.get(i));
                 else if (j == 1)
@@ -320,6 +354,9 @@ public class regForm extends JFrame {
             JLabel index = new JLabel();
             index.setFont(new Font("Arial", Font.PLAIN, 15));
             index.setHorizontalAlignment(SwingConstants.CENTER);
+            index.setForeground(Color.black);
+            index.setBackground(Color.lightGray);
+            index.setOpaque(true);
             index.setText(Integer.toString(i + 1));
             temps.add(index);
             allUserPanel.add(index, c2);

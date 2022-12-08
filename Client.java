@@ -6,6 +6,8 @@ import java.util.Scanner;
 import java.util.*;
 
 import javax.swing.JFrame;
+import javax.swing.border.Border;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -155,9 +157,15 @@ public class Client {
 
         messagearea.setEditable(false);
 
+        Border blackline = BorderFactory.createLineBorder(Color.black);
+        messagearea.setBorder(blackline);
+        messageinput.setBorder(blackline);
+        
+
         // setting frame's layout
         sendbutton.setHorizontalAlignment(SwingConstants.CENTER);
-        sendbutton.setBounds(1000, 0, 100, 32);
+        sendbutton.setFont(new Font("Arial", Font.PLAIN, 20));
+        sendbutton.setBounds(1475, 0, 100, 32);
         messageinput.add(sendbutton);
 
         // this.setVisible(true);

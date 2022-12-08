@@ -14,7 +14,7 @@ import java.awt.*;
 
 public class adminDashboard {
     JFrame frame;
-    JPanel dashboardJPanel;
+    JPanel leftJPanel, rightJPanel;
 
     // Dashboard Panel Items
     JButton signoutButton, addUserButton, viewQnAButton;
@@ -31,12 +31,13 @@ public class adminDashboard {
         Thread t1 = new Thread(rServer);
         t1.start();
         frame = new JFrame();
-        dashboardJPanel = new JPanel();
         signoutButton = new JButton("Sign Out");
         // signoutButton.setIcon(new ImageIcon("signout.png"));
         addUserButton = new JButton("Add User");
         viewQnAButton = new JButton("View Q/A Chat");
         topicJLabel = new JLabel("Admin Dashboard");
+        leftJPanel=new JPanel();
+        rightJPanel=new JPanel();
 
         topicJLabel.setFont(new Font("Arial", Font.PLAIN, 30));
         viewQnAButton.setFont(new Font("Arial", Font.PLAIN, 20));
@@ -66,54 +67,65 @@ public class adminDashboard {
             }
         });
 
-        dashboardJPanel.setLayout(new GridBagLayout());
-        Border blackline = BorderFactory.createLineBorder(Color.red);
-        dashboardJPanel.setBorder(blackline);
+        leftJPanel.setLayout(new GridBagLayout());
+        rightJPanel.setLayout(new GridBagLayout());
+        Border blackline = BorderFactory.createLineBorder(Color.black);
+        leftJPanel.setBorder(blackline);
+        rightJPanel.setBorder(blackline);
+        leftJPanel.setBackground(Color.decode("#1177bb"));
+        rightJPanel.setBackground(Color.lightGray);
+
         GridBagConstraints c = new GridBagConstraints();
-        c.insets = new Insets(10, 0, 0, 0);
+        c.insets = new Insets(5, 5, 5, 5);
 
         c.anchor = GridBagConstraints.CENTER;
         c.gridx = 0;
         c.gridy = 0;
-        c.gridwidth = 2;
-        c.weighty = 0.0;
-        c.weightx = 0.5;
-        dashboardJPanel.add(topicJLabel, c);
-
         c.gridwidth = 1;
-        c.gridx = 2;
-        c.gridy = 0;
         c.weighty = 1.0;
-        c.weightx = 0.0;
-        dashboardJPanel.add(signoutButton, c);
+        c.weightx = 1.5;
+        leftJPanel.add(topicJLabel, c);
+
+        // c.gridx = 2;
+        // c.gridy = 0;
+        // c.weighty = 1.0;
+        // c.weightx = 0.0;
+        // leftJPanel.add(signoutButton, c);
 
         c.gridx = 0;
         c.gridy = 1;
-        c.gridwidth = 2;
+        c.gridwidth = 1;
         c.anchor = GridBagConstraints.CENTER;
-        dashboardJPanel.add(addUserButton, c);
+        leftJPanel.add(addUserButton, c);
 
         c.gridy = 2;
-        dashboardJPanel.add(viewQnAButton, c);
+        leftJPanel.add(viewQnAButton, c);
+        
+        c.gridy=3;
+        leftJPanel.add(signoutButton,c);
+
+        frame.add(leftJPanel, BorderLayout.LINE_START);
 
         viewQnAButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                c.gridy = 3;
-                c.gridwidth = 3;
-                c.anchor = GridBagConstraints.CENTER;
-                c.fill = GridBagConstraints.BOTH;
-                c.weightx = 1.0;
-                c.weighty = 1.0;
+                GridBagConstraints c2 = new GridBagConstraints();
+                c2.insets = new Insets(5, 5, 5, 5);
+                c2.gridy = 0;
+                c2.gridx=0;
+                c2.gridwidth = 1;
+                c2.anchor = GridBagConstraints.CENTER;
+                c2.fill = GridBagConstraints.BOTH;
+                c2.weightx = 1.0;
+                c2.weighty = 1.0;
                 // serverPanel = new JScrollPane();
                 // serverPanel.add(Server.messagearea);
-                dashboardJPanel.add(Server.messagearea, c);
+                rightJPanel.add(Server.messagearea, c2);
                 frame.invalidate();
                 frame.revalidate();
                 frame.repaint();
             }
         });
-
-        frame.add(dashboardJPanel);
+        frame.add(rightJPanel,BorderLayout.CENTER);
 
     }
 
