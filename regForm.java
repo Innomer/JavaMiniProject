@@ -125,7 +125,6 @@ public class regForm extends JFrame {
                     ad = new adminDashboard();
                     ad.begin();
                 } catch (IOException e1) {
-                    // TODO Auto-generated catch block
                     e1.printStackTrace();
                 }
                 
@@ -140,7 +139,6 @@ public class regForm extends JFrame {
         c.gridx = 0;
         c.gridy = 0;
         c.gridwidth = 2;
-        // c.anchor = GridBagConstraints.PAGE_START;
         c.anchor = GridBagConstraints.CENTER;
         c.weightx = 0.5;
         c.weighty = 0.0;
@@ -250,10 +248,6 @@ public class regForm extends JFrame {
                 stat.add("Teacher");
                 else
                 stat.add("Admin");
-                // temps.add(new JLabel());
-                // temps.add(new JLabel());
-                // temps.add(new JLabel());
-                // temps.add(new JLabel());
             }
         } catch (Exception exception) {
             System.err.println(exception.getMessage());
@@ -331,14 +325,11 @@ public class regForm extends JFrame {
             allUserPanel.add(index, c2);
         }
 
-        // Border blackline = BorderFactory.createLineBorder(Color.blue);
-        // allUserPanel.setBorder(blackline);
         sP=new JScrollPane(allUserPanel);
         
     }
 
     public void begin(JPanel p) {
-        // setUndecorated(true);
         showExisting();
         add(sP);
         add(p, BorderLayout.LINE_END);
@@ -347,12 +338,6 @@ public class regForm extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
-    // public static void main(String args[])
-    // {
-    // regForm rf=new regForm();
-    // rf.begin(rf.panel);
-    // }
-
     boolean isEmptyString(String string) {
         return string == null || string.isEmpty();
     }

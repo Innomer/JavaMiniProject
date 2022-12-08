@@ -25,7 +25,6 @@ public class loginForm {
     // Constructor
     loginForm() throws IOException {
 
-
         // Initializing Items
         frame = new JFrame();
         panel = new JPanel();
@@ -41,21 +40,10 @@ public class loginForm {
         topicsJLabel.setFont(new Font("Arial", Font.PLAIN, 30));
         userJLabel.setFont(new Font("Arial", Font.PLAIN, 15));
         passJLabel.setFont(new Font("Arial", Font.PLAIN, 15));
-        // topicsJLabel.setBounds(400, 20, 100, 30);
-        // userJLabel.setBounds(200, 60, 100, 20);
-        // userField.setBounds(350, 60, 300, 20);
-        // passJLabel.setBounds(200, 110, 100, 20);
-        // passField.setBounds(350, 110, 300, 20);
-        // submitButton.setBounds(400, 150, 100, 30);
 
         // Parenting Labels to Text Fields
         userJLabel.setLabelFor(userField);
         passJLabel.setLabelFor(passField);
-
-        // userJLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-        // passJLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-        // passField.setHorizontalAlignment(SwingConstants.CENTER);
-        // userField.setHorizontalAlignment(SwingConstants.CENTER);
 
         // Login Functionality
         submitButton.addActionListener(new ActionListener() {
@@ -72,19 +60,18 @@ public class loginForm {
                     sta = connection.createStatement();
                     rs = sta.executeQuery(query);
                     while (rs.next()) {
-                        // System.out.println(rs.getString("username")+username+rs.getString("password"));
                         if (rs.getString("username").equalsIgnoreCase(username)
                                 && rs.getString("password").equals(password)) {
                             errorLabel.setText("");
                             System.out.println("Success");
                             frame.setVisible(false);
+
                             if (rs.getString("level").equals("2")) {
                                 adminDashboard admin = new adminDashboard();
                                 admin.begin();
-                            }
-                            else
-                            {
-                                stuTeach sT=new stuTeach();
+
+                            } else {
+                                stuTeach sT = new stuTeach(rs.getString("Fname"));
                                 sT.begin();
                             }
 
@@ -115,7 +102,6 @@ public class loginForm {
                 }
             }
         });
-        // panel.setLayout(new BorderLayout());
 
         // Arranging Items on Panel
         panel.setLayout(new GridBagLayout());
@@ -151,35 +137,11 @@ public class loginForm {
         c.gridwidth = 2;
         panel.add(errorLabel, c);
 
-        // panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        /*
-         * panel.add(userJLabel);
-         * panel.add(passJLabel);
-         * panel.add(userField);
-         * panel.add(passField);
-         * panel.add(submitButton);
-         */
-        // panel.add(topicsJLabel);
-        // panel.add(userJLabel);
-        // panel.add(passJLabel);
-        // panel.add(userField);
-        // panel.add(passField);
-        // panel.add(submitButton);
-        // panel.add(errorLabel);
         frame.add(panel, BorderLayout.CENTER);
-        // frame.add(panel);
-        // frame.add(topicsJLabel);
-        // frame.add(userJLabel);
-        // frame.add(passJLabel);
-        // frame.add(userField);
-        // frame.add(passField);
-        // frame.add(submitButton);
-        // frame.add(errorLabel);
-
-        // frame.add(panel);
     }
 
     public static void main(String args[]) throws IOException {
+
         begin();
     }
 
@@ -188,10 +150,8 @@ public class loginForm {
         lf.frame.setTitle("Sasta Teams");
         lf.frame.setSize(1280, 720);
         lf.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // lf.frame.setUndecorated(true);
         device.setFullScreenWindow(lf.frame);
-        // lf.frame.setLayout(null);
         lf.frame.setVisible(true);
-        Server serv=new Server();
+
     }
 }

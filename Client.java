@@ -12,7 +12,6 @@ import javax.swing.*;
 
 public class Client {
     final static int ServerPort = 1234;
-    static String name;
     static Vector<String> listofnames = new Vector<>();
 
     // delcaring gui components
@@ -21,14 +20,9 @@ public class Client {
     JTextField messageinput = new JTextField();
     JButton sendbutton = new JButton("Send");
     private Font font = new Font("Roboto", Font.PLAIN, 20);
-    private JLabel heading = new JLabel(name);
+    private JLabel heading = new JLabel("name");
 
-    public Client() throws IOException {
-        try (Scanner scn = new Scanner(System.in)) {
-            System.out.print("Enter your name: ");
-
-            name = "Fker";
-        }
+    public Client(String name) throws IOException {
         listofnames.add(name);
         // getting localhost ip
         InetAddress ip = InetAddress.getByName("localhost");
@@ -95,7 +89,7 @@ public class Client {
 
                         String content = messageinput.getText();
                         // messagearea.append(name+": "+content+"\n");
-                        if (content.length() >= 0) {
+                        if (content.length() > 0) {
                             try {
                                 dos.writeUTF(content);
                             } catch (IOException e1) {
@@ -169,9 +163,9 @@ public class Client {
         // this.setVisible(true);
     }
 
-    public static void main(String args[]) throws UnknownHostException, IOException {
+    // public static void main(String args[]) throws UnknownHostException, IOException {
 
-        Client cp = new Client();
+    //     Client cp = new Client();
 
-    }
+    // }
 }

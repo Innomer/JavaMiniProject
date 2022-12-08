@@ -24,7 +24,10 @@ public class stuTeach {
     static GraphicsDevice device = GraphicsEnvironment
             .getLocalGraphicsEnvironment().getScreenDevices()[0];
 
-    public stuTeach() {
+    public stuTeach(String chatName) {
+        RunServerST rst=new RunServerST();
+        Thread t3=new Thread(rst);
+        t3.start();
         frame = new JFrame();
         topicJLabel = new JLabel("DashBoard");
         grpJButton = new JButton("Groups");
@@ -53,7 +56,6 @@ public class stuTeach {
                     frame.setVisible(false);
                     lf.begin();
                 } catch (IOException e1) {
-                    // TODO Auto-generated catch block
                     e1.printStackTrace();
                 }
 
@@ -87,22 +89,19 @@ public class stuTeach {
         c2.gridx = 0;
         c2.gridy = 0;
         c2.gridwidth = 2;
-        // c2.weighty = 1.0;
-        // c2.weightx = 0.5;
         rigthJPanel.add(topicJLabel, c2);
 
         c2.gridwidth = 1;
         c2.gridx = 2;
         c2.gridy = 0;
         c2.anchor=GridBagConstraints.FIRST_LINE_END;
-        // c2.weighty = 1.0;
-        // c2.weightx = 0.0;
         rigthJPanel.add(signoutButton, c2);
 
         chatJButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Client cl=new Client();
+                    System.out.print(chatName);
+                    Client cl=new Client(chatName);
                     c2.anchor=GridBagConstraints.CENTER;
                     c2.gridx = 0;
                     c2.gridy = 1;
@@ -121,7 +120,6 @@ public class stuTeach {
                     frame.repaint();
 
                 } catch (IOException e1) {
-                    // TODO Auto-generated catch block
                     e1.printStackTrace();
                 }
             }
@@ -130,14 +128,31 @@ public class stuTeach {
         frame.add(rigthJPanel);
     }
 
-    public static void begin() {
-        stuTeach st = new stuTeach();
-        st.frame.setTitle("Sasta Teams");
-        st.frame.setSize(1280, 720);
-        // ad.frame.setUndecorated(true);
-        device.setFullScreenWindow(st.frame);
-        st.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // lf.frame.setLayout(null);
-        st.frame.setVisible(true);
+    public void begin() {
+        frame.setTitle("Sasta Teams");
+        frame.setSize(1280, 720);
+        device.setFullScreenWindow(frame);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+    }
+}
+
+class RunServerST implements Runnable {
+    Server serv;
+
+    @Override
+    public void run() {
+        try {
+            if (Server.canRun == false) {
+                serv = new Server();
+                adminDashboard.serverPanel = new JScrollPane();
+                adminDashboard.serverPanel.add(Server.messagearea);
+                System.out.println(Server.messagearea);
+                Server.canRun = true;
+                serv.runningServer();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
