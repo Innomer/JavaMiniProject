@@ -79,6 +79,11 @@ public class loginForm {
                                 adminDashboard admin = new adminDashboard();
                                 admin.begin();
                             }
+                            else
+                            {
+                                stuTeach sT=new stuTeach();
+                                sT.begin();
+                            }
 
                         } else {
                             errorLabel.setText("Wrong Credentials. Please Check your Username and Password Again");

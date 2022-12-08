@@ -1,6 +1,5 @@
 package MiniProject.JavaMiniProject;
 
-import javax.sound.midi.SysexMessage;
 import javax.swing.*;
 import javax.swing.border.*;
 import java.util.*;
@@ -20,6 +19,8 @@ public class regForm extends JFrame {
     JTextField userTextField, passTextField, fTextField, lTextField;
     JComboBox lvlField;
     JButton submitButton, backButton;
+
+    JScrollPane sP;
 
     static GraphicsDevice device = GraphicsEnvironment
             .getLocalGraphicsEnvironment().getScreenDevices()[0];
@@ -56,9 +57,12 @@ public class regForm extends JFrame {
         fJLabel.setLabelFor(fTextField);
         lJLabel.setLabelFor(lTextField);
         lvlJLabel.setLabelFor(lvlField);
+        errorLabel.setForeground(Color.red);
+        errorLabel.setFont(new Font("Arial", Font.BOLD, 20));
 
         submitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                
                 Connection connection = null;
                 Statement sta = null;
                 int rs = 0;
@@ -85,6 +89,9 @@ public class regForm extends JFrame {
                             System.out.println("Success!");
                         }
                     }
+                    else{
+                        errorLabel.setText("Pls Enter Data!");
+                    }
                 } catch (Exception exception) {
                     errorLabel.setText("Wrong Data Entered!");
                 } finally {
@@ -95,6 +102,12 @@ public class regForm extends JFrame {
                         if (connection != null) {
                             connection.close();
                         }
+                        remove(sP);
+                        showExisting();
+                        add(sP);
+                        invalidate();
+                        revalidate();
+                        repaint();
 
                     } catch (Exception ex) {
                         System.err.println(ex.getMessage());
@@ -187,10 +200,12 @@ public class regForm extends JFrame {
         JLabel allUser = new JLabel("All Users");
         allUser.setFont(new Font("Arial", Font.PLAIN, 30));
 
+
         JLabel f = new JLabel("First Name");
         JLabel l = new JLabel("Last Name");
         JLabel u = new JLabel("Username");
         JLabel s = new JLabel("Designation");
+        
 
         f.setFont(new Font("Arial", Font.PLAIN, 15));
         l.setFont(new Font("Arial", Font.PLAIN, 15));
@@ -221,7 +236,12 @@ public class regForm extends JFrame {
                 fnames.add(rs.getString("Fname"));
                 lnames.add(rs.getString("Lname"));
                 usernames.add(rs.getString("username"));
-                stat.add(rs.getString("level"));
+                if(rs.getString("level").equals("0"))
+                stat.add("Student");
+                else if(rs.getString("level").equals("1"))
+                stat.add("Teacher");
+                else
+                stat.add("Admin");
                 // temps.add(new JLabel());
                 // temps.add(new JLabel());
                 // temps.add(new JLabel());
@@ -303,14 +323,16 @@ public class regForm extends JFrame {
             allUserPanel.add(index, c2);
         }
 
-        Border blackline = BorderFactory.createLineBorder(Color.blue);
-        allUserPanel.setBorder(blackline);
+        // Border blackline = BorderFactory.createLineBorder(Color.blue);
+        // allUserPanel.setBorder(blackline);
+        sP=new JScrollPane(allUserPanel);
+        
     }
 
     public void begin(JPanel p) {
         // setUndecorated(true);
         showExisting();
-        add(allUserPanel);
+        add(sP);
         add(p, BorderLayout.LINE_END);
         setTitle("Sasta Teams");
         setSize(1280, 720);

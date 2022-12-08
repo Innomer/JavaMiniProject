@@ -30,7 +30,12 @@ public class adminDashboard {
         // signoutButton.setIcon(new ImageIcon("signout.png"));
         addUserButton=new JButton("Add User");
         viewQnAButton=new JButton("View Q/A Chat");
+        topicJLabel=new JLabel("Admin Dashboard");
 
+        topicJLabel.setFont(new Font("Arial", Font.PLAIN, 30));
+        viewQnAButton.setFont(new Font("Arial", Font.PLAIN, 20));
+        addUserButton.setFont(new Font("Arial", Font.PLAIN, 20));
+        signoutButton.setFont(new Font("Arial", Font.PLAIN, 20));
 
         addUserButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e)
@@ -66,11 +71,21 @@ public class adminDashboard {
         Border blackline = BorderFactory.createLineBorder(Color.red);
         dashboardJPanel.setBorder(blackline);
         GridBagConstraints c = new GridBagConstraints();
-        c.insets = new Insets(5, 5, 5, 5);
+        c.insets = new Insets(10, 0,0,0);
         
         c.anchor=GridBagConstraints.CENTER;
-        c.gridx = 10;
+        c.gridx=0;
+        c.gridy=0;
+        c.gridwidth=2;
+        c.weighty=0.0;
+        c.weightx=0.5;
+        dashboardJPanel.add(topicJLabel,c);
+
+        c.gridwidth=1;
+        c.gridx = 4;
         c.gridy = 0;
+        c.weighty=1.0;
+        c.weightx=0.0;
         dashboardJPanel.add(signoutButton,c);
         
         c.gridx=0;
