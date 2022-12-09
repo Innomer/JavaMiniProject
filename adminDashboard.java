@@ -44,6 +44,8 @@ public class adminDashboard {
         addUserButton.setFont(new Font("Arial", Font.PLAIN, 20));
         signoutButton.setFont(new Font("Arial", Font.PLAIN, 20));
 
+        topicJLabel.setForeground(Color.white);
+
         addUserButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 regForm regf = new regForm();

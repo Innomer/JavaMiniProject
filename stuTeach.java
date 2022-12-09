@@ -41,6 +41,7 @@ public class stuTeach {
         chatJButton.setFont(new Font("Arial", Font.PLAIN, 20));
         signoutButton.setFont(new Font("Arial", Font.PLAIN, 20));
 
+
         leftJPanel.setBackground(Color.decode("#1177bb"));
         rigthJPanel.setBackground(Color.lightGray);
 

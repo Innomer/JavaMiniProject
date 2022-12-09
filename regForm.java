@@ -67,7 +67,7 @@ public class regForm extends JFrame {
         lJLabel.setForeground(Color.white);
         errorLabel.setFont(new Font("Arial", Font.BOLD, 20));
 
-        panel.setBackground(Color.gray);
+        panel.setBackground(Color.decode("#1177bb"));
 
         submitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
