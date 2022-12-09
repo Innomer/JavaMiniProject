@@ -41,6 +41,12 @@ public class loginForm {
         userJLabel.setFont(new Font("Arial", Font.PLAIN, 15));
         passJLabel.setFont(new Font("Arial", Font.PLAIN, 15));
 
+        //Setting Colors
+        panel.setBackground(Color.decode("#1177bb"));
+        topicsJLabel.setForeground(Color.white);
+        userJLabel.setForeground(Color.white);
+        passJLabel.setForeground(Color.white);
+
         // Parenting Labels to Text Fields
         userJLabel.setLabelFor(userField);
         passJLabel.setLabelFor(passField);

@@ -37,13 +37,13 @@ public class Server {
         // server is listening on port 1234
         System.out.print("FK2");
         runningServer();
-       
+        messagearea.setEditable(false);
     }
 
     public void runningServer() throws IOException
     {
         if (canRun) {
-            System.out.print("FK");
+            // System.out.print("FK");
             ServerSocket ss = new ServerSocket(1234);
 
             Socket s;
@@ -110,7 +110,7 @@ public class Server {
         // heading.setHorizontalAlignment(SwingConstants.CENTER);
         // heading.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-        messagearea.setEditable(false);
+        
         Border blackline = BorderFactory.createLineBorder(Color.black);
         messagearea.setBorder(blackline);
 

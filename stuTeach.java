@@ -17,9 +17,9 @@ public class stuTeach {
 
     JFrame frame;
     JLabel topicJLabel;
-    JPanel leftJPanel, rigthJPanel;
+    JPanel leftJPanel, rigthJPanel,monthJPanel;
     JButton signoutButton;
-    JButton grpJButton, chatJButton;
+    JButton chatJButton;
 
     static GraphicsDevice device = GraphicsEnvironment
             .getLocalGraphicsEnvironment().getScreenDevices()[0];
@@ -29,15 +29,15 @@ public class stuTeach {
         Thread t3=new Thread(rst);
         t3.start();
         frame = new JFrame();
+        monthJPanel=new MonthPanel(11, 2022);
         topicJLabel = new JLabel("DashBoard");
-        grpJButton = new JButton("Groups");
-        chatJButton = new JButton("Q/A");
+        chatJButton = new JButton("Chat");
         signoutButton = new JButton("Sign Out");
         leftJPanel = new JPanel();
         rigthJPanel = new JPanel();
 
         topicJLabel.setFont(new Font("Arial", Font.PLAIN, 30));
-        grpJButton.setFont(new Font("Arial", Font.PLAIN, 20));
+        // grpJButton.setFont(new Font("Arial", Font.PLAIN, 20));
         chatJButton.setFont(new Font("Arial", Font.PLAIN, 20));
         signoutButton.setFont(new Font("Arial", Font.PLAIN, 20));
 
@@ -46,7 +46,7 @@ public class stuTeach {
         rigthJPanel.setBackground(Color.lightGray);
 
         topicJLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        grpJButton.setHorizontalAlignment(SwingConstants.CENTER);
+        // grpJButton.setHorizontalAlignment(SwingConstants.CENTER);
         chatJButton.setHorizontalAlignment(SwingConstants.CENTER);
         signoutButton.setHorizontalAlignment(SwingConstants.CENTER);
 
@@ -77,7 +77,7 @@ public class stuTeach {
         c.anchor = GridBagConstraints.CENTER;
         c.weighty = 1.0;
         c.weightx = 1.0;
-        leftJPanel.add(grpJButton, c);
+        leftJPanel.add(monthJPanel, c);
 
         c.gridy = 1;
         leftJPanel.add(chatJButton, c);
